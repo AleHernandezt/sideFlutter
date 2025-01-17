@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,6 +38,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index; // Cambia el índice seleccionado
+      // Cambia el texto mostrado según la opción seleccionada
+      if (index == 1) {
+        _displayText = 'Busca en Ale App'; // Cambia el texto a "Busca en Ale App"
+      } else if (index == 2) {
+        _displayText = 'Configuración en Ale App'; // Cambia el texto a "Configuración en Ale App"
+      } else {
+        _displayText = 'aleApp'; // Restablece el texto a "aleApp" para otras opciones
+      }
     });
   }
 
@@ -46,6 +55,38 @@ class _MyHomePageState extends State<MyHomePage> {
       _isExpanded = false; // Cierra el menú desplegable si está abierto
       Navigator.pop(context); // Cierra el menú
     });
+  }
+
+  void _showSearchDialog() {
+    // Configuración del AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Confirmar Búsqueda"),
+      content: Text("¿Quieres buscar?"),
+      actions: [
+        TextButton(
+          child: Text("No"),
+          onPressed: () {
+            Navigator.of(context).pop(); // Cierra el diálogo
+          },
+        ),
+        TextButton(
+          child: Text("Sí"),
+          onPressed: () {
+            // Aquí puedes agregar la lógica para realizar la búsqueda
+            Navigator.of(context).pop(); // Cierra el diálogo
+            // Lógica de búsqueda aquí
+          },
+        ),
+      ],
+    );
+
+    // Mostrar el diálogo
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
   @override
@@ -73,13 +114,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontSize: 24,
               ),
             ),
+            // Agregar el botón de búsqueda
+            if (_selectedIndex == 1) // Solo mostrar el botón si "Buscar" está seleccionado
+              ElevatedButton(
+                onPressed: _showSearchDialog, // Mostrar el AlertDialog al presionar el botón
+                child: const Text('Buscar'),
+              ),
           ],
         ),
       ),
       drawer: Drawer(
         child: Column(
           children: [
-            const DrawerHeader(
+                        const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.deepPurple,
               ),
@@ -161,7 +208,6 @@ class _MyHomePageState extends State<MyHomePage> {
         selectedItemColor: Colors.deepPurple,
         onTap: _onItemTapped,
       ),
-   
-      );
+    );
   }
 }
