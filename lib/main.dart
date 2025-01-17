@@ -40,11 +40,14 @@ class _MyHomePageState extends State<MyHomePage> {
       _selectedIndex = index; // Cambia el índice seleccionado
       // Cambia el texto mostrado según la opción seleccionada
       if (index == 1) {
-        _displayText = 'Busca en Ale App'; // Cambia el texto a "Busca en Ale App"
+        _displayText =
+            'Busca en Ale App'; // Cambia el texto a "Busca en Ale App"
       } else if (index == 2) {
-        _displayText = 'Configuración en Ale App'; // Cambia el texto a "Configuración en Ale App"
+        _displayText =
+            'Configuración en Ale App'; // Cambia el texto a "Configuración en Ale App"
       } else {
-        _displayText = 'aleApp'; // Restablece el texto a "aleApp" para otras opciones
+        _displayText =
+            'aleApp'; // Restablece el texto a "aleApp" para otras opciones
       }
     });
   }
@@ -108,6 +111,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             const SizedBox(height: 20),
+            // Agregar la imagen de Internet
+            CachedNetworkImage(
+              imageUrl: 'https://via.placeholder.com/150', // URL de la imagen
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
+            const SizedBox(height: 20),
             Text(
               _displayText,
               style: const TextStyle(
@@ -115,9 +125,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             // Agregar el botón de búsqueda
-            if (_selectedIndex == 1) // Solo mostrar el botón si "Buscar" está seleccionado
+            if (_selectedIndex ==
+                1) // Solo mostrar el botón si "Buscar" está seleccionado
               ElevatedButton(
-                onPressed: _showSearchDialog, // Mostrar el AlertDialog al presionar el botón
+                onPressed:
+                    _showSearchDialog, // Mostrar el AlertDialog al presionar el botón
                 child: const Text('Buscar'),
               ),
           ],
@@ -126,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: Drawer(
         child: Column(
           children: [
-                        const DrawerHeader(
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.deepPurple,
               ),
@@ -164,7 +176,8 @@ class _MyHomePageState extends State<MyHomePage> {
               title: const Text('Opción 3'),
               onTap: () {
                 setState(() {
-                  _isExpanded = !_isExpanded; // Cambia el estado del menú desplegable
+                  _isExpanded =
+                      !_isExpanded; // Cambia el estado del menú desplegable
                 });
               },
               trailing: Icon(
@@ -176,13 +189,15 @@ class _MyHomePageState extends State<MyHomePage> {
               ListTile(
                 title: const Text('Desplegable 1'),
                 onTap: () {
-                  _onDrawerItemTapped('Desplegable 1'); // Cambia el texto a "Desplegable 1"
+                  _onDrawerItemTapped(
+                      'Desplegable 1'); // Cambia el texto a "Desplegable 1"
                 },
               ),
               ListTile(
                 title: const Text('Desplegable 2'),
                 onTap: () {
-                  _onDrawerItemTapped('Desplegable 2'); // Cambia el texto a "Desplegable 2"
+                  _onDrawerItemTapped(
+                      'Desplegable 2'); // Cambia el texto a "Desplegable 2"
                 },
               ),
             ],
