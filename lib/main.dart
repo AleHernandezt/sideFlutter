@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
             'Busca en Ale App'; // Cambia el texto a "Busca en Ale App"
       } else if (index == 2) {
         _displayText =
-            'Configuración en Ale App'; // Cambia el texto a "Configuración en Ale App"
+            'Configuración de la Ale App'; // Cambia el texto a "Configuración en Ale App"
       } else {
         _displayText =
             'aleApp'; // Restablece el texto a "aleApp" para otras opciones
@@ -63,17 +63,17 @@ class _MyHomePageState extends State<MyHomePage> {
   void _showSearchDialog() {
     // Configuración del AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Confirmar Búsqueda"),
-      content: Text("¿Quieres buscar?"),
+      title: const Text("Confirmar Búsqueda"),
+      content: const Text("¿Quieres buscar?"),
       actions: [
         TextButton(
-          child: Text("No"),
+          child: const Text("No"),
           onPressed: () {
             Navigator.of(context).pop(); // Cierra el diálogo
           },
         ),
         TextButton(
-          child: Text("Sí"),
+          child: const Text("Sí"),
           onPressed: () {
             // Aquí puedes agregar la lógica para realizar la búsqueda
             Navigator.of(context).pop(); // Cierra el diálogo
